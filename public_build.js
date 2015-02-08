@@ -4,14 +4,17 @@ var browserify = require('browserify'),
 process.env.BROWSERIFYSHIM_DIAGNOSTICS = 1;
 
 browserify()
-    .require(require.resolve('./node_modules/angular/angular.js'), { expose: 'angular' })
+    .require('angular')
+    .transform('browserify-shim', {
+      global: true
+    })
     .bundle()
     .on('error', function (err) { console.error(err); })
     .pipe(fs.createWriteStream('./public/vendor.bundle.js'));
 
 browserify({fullPaths: false})
     .add('./public/example.js')
-    .exclude('angular')
+    .external('angular')
     .bundle()
     .on('error', function (err) { console.error(err); })
     .pipe(fs.createWriteStream('./public/example.bundle.js'));
