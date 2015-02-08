@@ -1,18 +1,19 @@
 var browserify = require('browserify'),
-    path = require('path'),
     fs = require('fs');
 
-var exampleBundlePath = path.join(__dirname, 'public', 'example.bundle.js');
+process.env.BROWSERIFYSHIM_DIAGNOSTICS = 1;
 
-browserify({fullPaths: false})
-    .add('./public/example.js', {
-        insertGlobals: true,
-        debug: true
-    })
-    .transform('browserify-shim')
-    //.require(['angular', 'moment'])
+browserify()
+    .add('./public/vendor.js')
+    .require(require.resolve('angular'), { expose: 'angular' })
     .bundle()
     .on('error', function (err) { console.error(err); })
-    .pipe(fs.createWriteStream(exampleBundlePath));
+    .pipe(fs.createWriteStream('./public/vendor.bundle.js'))
+;
 
-console.log('vendors boundled');
+browserify({fullPaths: false})
+    .add('./public/example.js')
+    .exclude('angular')
+    .bundle()
+    .on('error', function (err) { console.error(err); })
+    .pipe(fs.createWriteStream('./public/example.bundle.js'));
