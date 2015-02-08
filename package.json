@@ -1,0 +1,29 @@
+{
+  "name": "browserify-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blacksonic/browserify-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blacksonic/browserify-example/issues"
+  },
+  "homepage": "https://github.com/blacksonic/browserify-example",
+  "dependencies": {
+    "angular": "^1.3.12",
+    "browserify": "^8.1.3",
+    "browserify-shim": "^3.8.2",
+    "express": "^4.11.2",
+    "moment": "^2.9.0"
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
+  }
+}
