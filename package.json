@@ -25,6 +25,9 @@
     "express": "^4.11.2",
     "moment": "^2.9.0"
   },
+  "browser": {
+    "angular": "./node_modules/angular/angular.js"
+  },
   "browserify": {
     "transform": [ "browserify-shim" ]
   },

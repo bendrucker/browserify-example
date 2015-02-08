@@ -5,7 +5,7 @@ process.env.BROWSERIFYSHIM_DIAGNOSTICS = 1;
 
 browserify()
     .add('./public/vendor.js')
-    .require(require.resolve('angular'), { expose: 'angular' })
+    .require(require.resolve('./node_modules/angular/angular.js'), { expose: 'angular' })
     .bundle()
     .on('error', function (err) { console.error(err); })
     .pipe(fs.createWriteStream('./public/vendor.bundle.js'))
